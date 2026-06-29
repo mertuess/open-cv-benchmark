@@ -1,0 +1,750 @@
+/* Подключение шрифта Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+/* Базовые сбросы и настройки */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #0f0f1a;
+  color: #e0e0e0;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #0f0f1a 0%, #1a1a2e 100%);
+  padding: 0 20px;
+  height: 48px;
+  min-height: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  -webkit-app-region: drag;
+  user-select: none;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1000;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.header-title h1 {
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3498db, #2ecc71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  -webkit-app-region: no-drag;
+}
+
+.header-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #8899bb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.header-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e0e0e0;
+}
+
+.header-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.close-btn:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+.minimize-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+}
+
+.maximize-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+}
+
+/* Основной контейнер */
+.root {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  grid-template-rows: 1fr;
+  gap: 0;
+  height: 100vh;
+  background: #0f0f1a;
+}
+
+/* Панель настроек */
+.options-panel {
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  padding: 20px 16px;
+  overflow-y: auto;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.options-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.options-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.options-panel::-webkit-scrollbar-thumb {
+  background: rgba(52, 152, 219, 0.4);
+  border-radius: 4px;
+}
+
+.options-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(52, 152, 219, 0.6);
+}
+
+.option-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-panel h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(52, 152, 219, 0.3);
+  margin-bottom: 4px;
+}
+
+/* Селектор пайплайна */
+.pipeline-selector {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.pipeline-selector label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #8899bb;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.pipeline-selector select {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238899bb' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+.pipeline-selector select:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(52, 152, 219, 0.3);
+}
+
+.pipeline-selector select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.pipeline-selector select option {
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+/* Описание пайплайна */
+.pipeline-description {
+  font-size: 13px;
+  font-weight: 400;
+  color: #8899bb;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border-left: 3px solid rgba(52, 152, 219, 0.3);
+  margin: 0;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Блок процессора */
+.processor-block {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.processor-block:hover {
+  border-color: rgba(52, 152, 219, 0.15);
+}
+
+.processor-block h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #5dade2;
+  margin: 0 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.processor-block h3::before {
+  content: '▸';
+  color: #3498db;
+  font-size: 12px;
+}
+
+/* Группа параметров */
+.param-group {
+  margin: 6px 0;
+}
+
+.param-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 12px;
+  color: #8899bb;
+  letter-spacing: 0.3px;
+}
+
+.param-group select {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.param-group select:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.param-group select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.param-group select option {
+  background: #1a1a2e;
+}
+
+/* Range слайдер - ИСПРАВЛЕННАЯ ВЕРСИЯ */
+.param-group input[type="range"] {
+  width: calc(100% - 50px);
+  display: inline-block;
+  vertical-align: middle;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  outline: none;
+  transition: background 0.3s ease;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 0;
+}
+
+/* Стили для WebKit (Chrome, Safari, Edge) */
+.param-group input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.param-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #3498db;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+  margin-top: -6px; /* Центрируем кружок относительно трека */
+}
+
+.param-group input[type="range"]::-webkit-slider-thumb:hover {
+  background: #5dade2;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+}
+
+/* Стили для Firefox */
+.param-group input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  border: none;
+}
+
+.param-group input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #3498db;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+}
+
+.param-group input[type="range"]::-moz-range-thumb:hover {
+  background: #5dade2;
+  transform: scale(1.1);
+}
+
+/* Стили для Internet Explorer */
+.param-group input[type="range"]::-ms-track {
+  height: 4px;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.param-group input[type="range"]::-ms-fill-lower {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.param-group input[type="range"]::-ms-fill-upper {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.param-group input[type="range"]::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #3498db;
+  cursor: pointer;
+  border: none;
+  margin-top: 0;
+}
+
+.param-group input[type="range"]:focus {
+  outline: none;
+}
+
+.param-group input[type="range"]:focus::-webkit-slider-thumb {
+  background: #5dade2;
+}
+
+/* Отображение значения слайдера */
+.param-group .value-display {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 13px;
+  color: #5dade2;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+/* Чекбокс */
+.param-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #3498db;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.param-group input[type="checkbox"]:checked {
+  background: #3498db;
+  border-color: #3498db;
+}
+
+.param-group input[type="checkbox"]:hover {
+  border-color: #3498db;
+}
+
+/* Область просмотра изображения */
+.image-viewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 30px;
+  background: radial-gradient(ellipse at center, #141425 0%, #0a0a12 100%);
+  overflow-y: auto;
+  gap: 12px;
+}
+
+.image-viewer h1 {
+  font-size: 26px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3498db, #2ecc71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 0 0 40px rgba(52, 152, 219, 0.1);
+}
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  gap: 12px;
+}
+
+/* Видео/изображение - ИСПРАВЛЕННАЯ ВЕРСИЯ (без пульсации) */
+#videoCanvas {
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  border-radius: 12px;
+  background: #0a0a12;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 60px rgba(52, 152, 219, 0.05);
+  transition: all 0.3s ease;
+  /* Убираем анимацию пульсации */
+  animation: none !important;
+}
+
+#videoCanvas:hover {
+  border-color: rgba(52, 152, 219, 0.2);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7), 0 0 80px rgba(52, 152, 219, 0.08);
+}
+
+/* Стиль для изображения при загрузке (без пульсации) */
+#videoCanvas[src=""] {
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
+}
+
+#videoCanvas:not([src=""]) {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Контейнер гистограммы */
+.histogram-container {
+  width: 100%;
+  max-width: 640px;
+  background: rgba(10, 10, 18, 0.8);
+  border-radius: 12px;
+  padding: 12px 16px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.histogram-container canvas {
+  width: 100%;
+  height: auto;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+  display: block;
+}
+
+/* Элементы управления гистограммой */
+.histogram-controls {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.histogram-controls label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8899bb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.histogram-controls label:hover {
+  color: #e0e0e0;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.histogram-controls input[type="checkbox"],
+.histogram-controls input[type="radio"] {
+  cursor: pointer;
+  accent-color: #3498db;
+  width: 16px;
+  height: 16px;
+}
+
+.histogram-controls input[type="radio"] {
+  border-radius: 50%;
+}
+
+.histogram-controls input[type="radio"]:checked + label {
+  color: #5dade2;
+}
+
+/* Статусные сообщения */
+.status-message {
+  font-size: 13px;
+  color: #8899bb;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border-left: 3px solid #3498db;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .root {
+    grid-template-columns: 360px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .root {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .options-panel {
+    max-height: 45vh;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 14px 12px;
+  }
+
+  .image-viewer {
+    padding: 12px 16px;
+    min-height: 55vh;
+  }
+
+  .image-viewer h1 {
+    font-size: 20px;
+  }
+
+  #videoCanvas {
+    max-width: 100%;
+  }
+
+  .histogram-container {
+    max-width: 100%;
+  }
+
+  .histogram-controls {
+    gap: 8px;
+  }
+
+  .histogram-controls label {
+    font-size: 11px;
+    padding: 2px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .options-panel {
+    max-height: 40vh;
+    padding: 10px 8px;
+  }
+
+  .option-panel h2 {
+    font-size: 15px;
+  }
+
+  .processor-block {
+    padding: 10px 12px;
+  }
+
+  .param-group label {
+    font-size: 11px;
+  }
+
+  .param-group input[type="range"] {
+    width: calc(100% - 40px);
+  }
+
+  .param-group .value-display {
+    width: 32px;
+    font-size: 11px;
+  }
+
+  .image-viewer h1 {
+    font-size: 17px;
+  }
+
+  #videoCanvas {
+    border-radius: 8px;
+  }
+
+  .histogram-container {
+    padding: 8px 10px 10px;
+  }
+
+  .histogram-controls label {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}
+
+/* Стили для сообщения об ошибке */
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 20px;
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.2);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Кастомный скролл для всего приложения */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(52, 152, 219, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(52, 152, 219, 0.5);
+}
+
+/* Кастомная подсказка для слайдеров */
+.param-group input[type="range"]:hover + .value-display {
+  color: #3498db;
+}
+
+/* Эффект при фокусе на чекбоксе */
+.param-group input[type="checkbox"]:focus-visible {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+/* Эффект при фокусе на селекте */
+.pipeline-selector select:focus-visible,
+.param-group select:focus-visible {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+/* Стиль для отключенных элементов */
+.param-group input:disabled,
+.param-group select:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Разделитель между блоками процессоров */
+.processor-block + .processor-block {
+  margin-top: 8px;
+}
+
+/* Бейдж для активного процессора */
+.processor-block.active {
+  border-color: rgba(52, 152, 219, 0.3);
+  background: rgba(52, 152, 219, 0.05);
+}
+
+.processor-block.active h3::after {
+  content: '●';
+  color: #2ecc71;
+  font-size: 10px;
+  margin-left: auto;
+}
+
+/* Анимация для гистограммы */
+.histogram-container canvas {
+  transition: opacity 0.2s ease;
+}
+
+.histogram-container canvas:not([data-loaded]) {
+  opacity: 0.5;
+}

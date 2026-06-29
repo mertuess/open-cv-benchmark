@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>OpenCV Benchmark</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <header class="app-header">
+    <div class="header-title">
+      <h1>Open CV Benchmark</h1>
+    </div>
+    <div class="header-controls">
+      <button class="header-btn minimize-btn" id="minimizeBtn" title="Свернуть">
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <rect x="0" y="5" width="12" height="2" fill="currentColor" />
+        </svg>
+      </button>
+      <button class="header-btn maximize-btn" id="maximizeBtn" title="Развернуть">
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <rect x="1" y="1" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </button>
+      <button class="header-btn close-btn" id="closeBtn" title="Закрыть">
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <line x1="1" y1="1" x2="11" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="11" y1="1" x2="1" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="root">
+    <div class="options-panel">
+      <div class="option-panel">
+        <h2>Настройки</h2>
+      </div>
+    </div>
+    <div class="image-viewer">
+      <div class="video-container">
+        <img id="videoCanvas" src="" alt="Ожидание потока...">
+        <div class="histogram-container">
+          <canvas id="histogramCanvas" width="640" height="200"></canvas>
+          <div class="histogram-controls">
+            <label>
+              <input type="checkbox" id="showHistogram" checked>
+              Показать гистограмму
+            </label>
+            <label>
+              <input type="radio" name="histogramType" value="rgb" checked>
+              RGB
+            </label>
+            <label>
+              <input type="radio" name="histogramType" value="gray">
+              Оттенки серого
+            </label>
+            <label>
+              <input type="radio" name="histogramType" value="separate">
+              По каналам
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./js/get-frame.js"></script>
+<script src="./js/window-controls.js"></script>
+
+</html>
